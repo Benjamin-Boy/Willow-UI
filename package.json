@@ -6,8 +6,9 @@
         "playground"
     ],
     "scripts": {
-        "dev": "npm run dev --workspace=playground",
-        "build": "npm run build --workspace=@willow/ui",
+        "dev": "concurrently \"npm run build:watch\" \"npm run dev --workspace=playground\"",
+        "build": "npm run build --workspace=@Benjamin-Boy/willow-ui",
+        "build:watch": "npm run build --watch --workspace=@Benjamin-Boy/willow-ui",
         "build:all": "npm run build --workspaces",
         "lint": "oxlint ."
     },

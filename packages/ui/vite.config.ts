@@ -7,7 +7,6 @@ export default defineConfig({
     plugins: [
         react(),
         tailwindcss(),
-
         dts({
             entryRoot: "src",
         }),
@@ -16,6 +15,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: "src/index.ts",
+            name: "WillowUI",
             formats: ["es"],
             fileName: "index",
         },
