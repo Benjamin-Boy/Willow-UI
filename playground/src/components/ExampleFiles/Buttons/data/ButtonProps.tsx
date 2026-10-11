@@ -1,5 +1,3 @@
-import { Button } from "@willow/ui";
-
 const buttonProps = {
     label: {
         type: "string",
@@ -37,7 +35,6 @@ const buttonProps = {
         default: "N/A",
     },
 }
-
 export function ButtonProps() {
     return (
         <div className="overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-md border border-zinc-800">
@@ -67,16 +64,4 @@ export function ButtonProps() {
             </table>
         </div>
     )
-}
-
-export const buttonSource = `<Button variant="contained" label="Contained" />
-<Button variant="outlined" label="Outlined" />
-<Button variant="text" label="Text" />
-`
-export default function ButtonExample() {
-    return <div className="flex gap-5 items-center">
-        <Button variant="contained" label="Contained" />
-        <Button variant="outlined" label="Outlined" />
-        <Button variant="text" label="Text" />
-    </div>
 }

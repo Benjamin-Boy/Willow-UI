@@ -1,6 +1,9 @@
-// Components
-import Header from './components/Header';
-import Home from './pages/Home';
+// Libraries
+import { AppLayout } from '@willow/ui';
+import { Outlet } from 'react-router';
+
+// Data
+import { headerMenu } from './data/headerMenu';
 
 // TODO Github packages
 // TODO git tags
@@ -8,9 +11,8 @@ import Home from './pages/Home';
 export default function App() {
 
   return (
-    <div className='flex flex-col bg-zinc-950'>
-      <Header />
-      <Home />
-    </div>
+    <AppLayout headerMenu={headerMenu}>
+      <Outlet />
+    </AppLayout>
   )
 }

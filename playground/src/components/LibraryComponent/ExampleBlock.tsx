@@ -7,7 +7,7 @@ interface Props {
 export default function ExampleBlock(props: Props) {
 
     return (
-        <div className="flex items-center justify-center rounded-t-lg border-x border-t border-zinc-800 p-28 min-h-80">
+        <div className="flex items-center justify-center rounded-t-lg border-x border-t border-zinc-800 bg-zinc-950 p-14">
             {props.content}
         </div>
     )
