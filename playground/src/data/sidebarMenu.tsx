@@ -4,6 +4,8 @@ import CodeBlock from "../components/LibraryComponent/CodeBlock";
 
 // Examples
 import { basicButtonExample, buttonWithIconExample } from "../components/ExampleFiles/Buttons"
+import ButtonComponentPage from "../pages/Component.tsx/ButtonComponentPage";
+import DropdownComponentPage from "../pages/Component.tsx/DropdownComponentPage";
 
 export const componentsMenu = [
     {
@@ -11,6 +13,7 @@ export const componentsMenu = [
         label: "Button",
         route: "button",
         description: "An interactive and cutomizable button.",
+        component: ButtonComponentPage,
         props: basicButtonExample.props,
         sections: [
             {
@@ -40,6 +43,7 @@ export const componentsMenu = [
         label: "Dropdown Menu",
         route: "dropdown",
         description: "An interactive and cutomizable button.",
+        component: DropdownComponentPage,
         props: basicButtonExample.props,
         sections: [
             {
