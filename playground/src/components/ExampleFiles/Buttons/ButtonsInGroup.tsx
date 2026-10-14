@@ -9,7 +9,7 @@ export const buttonsInGroupSource = `<ButtonGroup border="border border-blue-600
 
 export default function ButtonsInGroup() {
     return (
-        <ButtonGroup border="border border-blue-600">
+        <ButtonGroup gap="gap-1">
             <Button variant="outlined" label="Button 1" rounded={"rounded-l"} icon={<TestIcon />} />
             <Button variant="contained" label="Button 2" rounded={"rounded-none"} />
             <Button variant="contained" label="Button 3" rounded={"rounded-r"} />

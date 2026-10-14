@@ -5,10 +5,13 @@ import type { IconProps } from "../Icons/Icon/Icon";
 interface ButtonProps {
     children?: React.ReactNode;
     border?: string;
+    gap?: string;
 }
 
 export default function Button(props: ButtonProps) {
     const border = props.border ?? "";
+    const gap = props.gap ?? "";
+
     // const disabled = props.disabled ?? false;
     // const animationSpeed = props.animationSpeed ?? "medium";
 
@@ -51,7 +54,7 @@ export default function Button(props: ButtonProps) {
     // const defaultStyle = computeStyles(buttonStyles["contained"]);
 
     return (
-        <div className={`flex items-center first:rounded last:rounded ${border}`}>
+        <div className={`flex items-center first:rounded last:rounded ${gap} ${border}`}>
             {props.children}
         </div>
     );
