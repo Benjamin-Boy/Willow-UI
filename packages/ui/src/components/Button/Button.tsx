@@ -1,37 +1,35 @@
-import type { JSX } from "react";
 import { computeStyles } from "../../utils/style.utils";
-import type { IconProps } from "../Icons/Icon/Icon";
 
 interface ButtonProps {
-    label: string;
     variant: string;
+    label?: string;
     disabled?: boolean;
     animationSpeed?: string;
     icon?: React.ReactNode;
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
+    rounded?: string;
+    buttonStyle?: Record<string, Record<string, string>>;
+    loader?: React.ReactNode;
 }
 
 //TODO
 // - variant avec styles presets
 // - Changer les presets en fonction du theme
 
-//  - icon / sans icone
-//  - icone droite/gauche
 //  - icone seule
 //  - tooltip
-//  - Single tap
 //  - long click
 
 export default function Button(props: ButtonProps) {
     const disabled = props.disabled ?? false;
     const animationSpeed = props.animationSpeed ?? "medium";
-
     const baseButtonStyle = {
         border: "border",
-        radius: "rounded-md",
+        radius: props.rounded ?? "rounded-md",
         padding: "px-4 py-2",
         cursor: `${disabled ? "cursor-default" : "cursor-pointer"}`,
+        size: "min-h-10 max-h-10",
     }
 
     const buttonStyles: Record<string, Record<string, string>> = {
@@ -50,6 +48,11 @@ export default function Button(props: ButtonProps) {
             textColor: "text-blue-600 hover:text-blue-400",
             borderColor: "border-transparent",
         },
+        "icon": {
+            backgroundColor: "bg-transparent",
+            textColor: "text-blue-600 hover:text-blue-400",
+            borderColor: "border-transparent",
+        },
     }
 
     const animationSpeeds: Record<string, string> = {
@@ -61,14 +64,15 @@ export default function Button(props: ButtonProps) {
     const defaultStyle = computeStyles(buttonStyles["contained"]);
 
     return (
-        <button className={`${buttonStyles[props.variant] ? ` ${computeStyles(baseButtonStyle)} ${computeStyles(buttonStyles[props.variant])}` : defaultStyle} ${animationSpeeds[animationSpeed]} flex items-center gap-3 text-md`}>
+        <button className={`${buttonStyles[props.variant] ? `${computeStyles(baseButtonStyle)} ${computeStyles(buttonStyles[props.variant])}` : defaultStyle} ${animationSpeeds[animationSpeed]} flex items-center gap-3 text-md`}>
+            {props.loader && props.loader}
             {props.icon && props.icon}
             {
                 !props.icon &&
                 (
                     <>
                         {props.startIcon && props.startIcon}
-                        {props.label}
+                        {props.label && props.label}
                         {props.endIcon && props.endIcon}
                     </>
                 )

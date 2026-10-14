@@ -20,8 +20,8 @@ export default function Icon(props: IconProps) {
             viewBox="0 0 24 24"
             width={size}
             height={size}
-            fill={variant === "fill" ? color : "none"}
-            stroke={variant === "stroke" ? color : "none"}
+            fill={variant === "fill" ? "currentColor" : "none"}
+            stroke={variant === "stroke" ? "currentColor" : "none"}
             strokeWidth={variant === "stroke" ? strokeWidth : undefined}
             {...props}
         >
