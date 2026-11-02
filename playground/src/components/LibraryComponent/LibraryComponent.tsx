@@ -1,6 +1,3 @@
-// Libraries
-import type { JSX } from "react";
-
 // Components
 import HeaderBlock from "./HeaderBlock";
 import PropsBlock from "./PropsBlock";
@@ -11,7 +8,7 @@ import { PageLayout } from "@willow/ui";
 interface Props {
     title: string;
     description: string;
-    props: JSX.Element;
+    props: Record<string, Record<string, string>>;
     sections: any;
 }
 

@@ -1,4 +1,4 @@
-import { ButtonProps } from "./data/ButtonProps";
+import { buttonProps } from "./data/buttonProps";
 
 import BasicButton, { basicButtonSource } from "./BasicButton";
 import ButtonWithIcons, { buttonWithIconsSource } from "./ButtonWithIcons";
@@ -7,31 +7,31 @@ import ButtonsInGroup, { buttonsInGroupSource } from "./ButtonsInGroup";
 import LoadingButton, { loadingButtonSource } from "./LoadingButton";
 
 export const basicButtonExample = {
-    props: <ButtonProps />,
+    props: buttonProps,
     component: <BasicButton />,
     source: basicButtonSource,
 };
 
 export const buttonWithIconExample = {
-    props: <ButtonProps />,
+    props: buttonProps,
     component: <ButtonWithIcons />,
     source: buttonWithIconsSource,
 };
 
 export const iconButtonExample = {
-    props: <ButtonProps />,
+    props: buttonProps,
     component: <IconButton />,
     source: iconButtonSource,
 };
 
 export const buttonGroupExample = {
-    props: <ButtonProps />,
+    props: buttonProps,
     component: <ButtonsInGroup />,
     source: buttonsInGroupSource,
 };
 
 export const loadingButtonExample = {
-    props: <ButtonProps />,
+    props: buttonProps,
     component: <LoadingButton />,
     source: loadingButtonSource,
 };
