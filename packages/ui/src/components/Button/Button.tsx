@@ -3,14 +3,17 @@ import { computeStyles } from "../../utils/style.utils";
 interface ButtonProps {
     variant: string;
     label?: string;
+    color?: string;
     disabled?: boolean;
     animationSpeed?: string;
     icon?: React.ReactNode;
+    iconVariant?: string;
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
     rounded?: string;
     buttonStyle?: Record<string, Record<string, string>>;
     loader?: React.ReactNode;
+    iconClassName?: string;
 }
 
 //TODO
@@ -20,37 +23,38 @@ interface ButtonProps {
 //  - icone seule
 //  - tooltip
 //  - long click
+//  - onClick function
 
 export default function Button(props: ButtonProps) {
     const disabled = props.disabled ?? false;
+    const loader = props.loader ?? false;
     const animationSpeed = props.animationSpeed ?? "medium";
+    const iconVariant = props.iconVariant ?? "stroke";
     const baseButtonStyle = {
         border: "border",
         radius: props.rounded ?? "rounded-md",
-        padding: "px-4 py-2",
-        cursor: `${disabled ? "cursor-default" : "cursor-pointer"}`,
-        size: "min-h-10 max-h-10",
-    }
+        padding: `${props.variant === "icon" ? "" : props.variant !== "icon" && props.icon ? "p-2" : "px-4 py-2"}`,
+        cursor: `${disabled || loader ? "cursor-default" : "cursor-pointer"}`,
+        size: `${props.variant === "icon" ? "" : "min-h-10 max-h-10"}`,
+    };
+    const backgroundColor = props.color ?? "bg-primary hover:brightness-130";
+    const textColor = props.color ?? "text-primary hover:brightness-130";
+    const borderColor = props.color ?? "border-primary hover:brightness-130";
 
     const buttonStyles: Record<string, Record<string, string>> = {
         "contained": {
-            backgroundColor: `${disabled ? "bg-zinc-300" : "bg-blue-600 hover:bg-blue-700"}`,
-            textColor: `${disabled ? "text-zinc-300" : "text-white"}`,
+            backgroundColor: `${disabled || loader ? "bg-default-light" : `${backgroundColor}`}`,
+            textColor: `${disabled || loader ? "text-default-dark" : "text-default-dark"}`,
             borderColor: "border-transparent",
         },
         "outlined": {
-            backgroundColor: "bg-transparent hover:bg-zinc-900",
-            textColor: "text-blue-600 hover:text-blue-400",
-            borderColor: "border-blue-600 hover:border-blue-400",
+            backgroundColor: `bg-transparent  ${disabled || loader ? "" : "hover:bg-default-dark"}`,
+            textColor: `${disabled || loader ? "text-default-light" : `${textColor}`}`,
+            borderColor: `${disabled || loader ? "border-default-light" : `${borderColor}`}`,
         },
         "text": {
-            backgroundColor: "bg-transparent hover:bg-slate-900",
-            textColor: "text-blue-600 hover:text-blue-400",
-            borderColor: "border-transparent",
-        },
-        "icon": {
-            backgroundColor: "bg-transparent",
-            textColor: "text-blue-600 hover:text-blue-400",
+            backgroundColor: `bg-transparent  ${disabled || loader ? "" : "hover:bg-default-dark"}`,
+            textColor: `${disabled || loader ? "text-default-light" : `${textColor}`}`,
             borderColor: "border-transparent",
         },
     }
@@ -64,19 +68,28 @@ export default function Button(props: ButtonProps) {
     const defaultStyle = computeStyles(buttonStyles["contained"]);
 
     return (
-        <button className={`${buttonStyles[props.variant] ? `${computeStyles(baseButtonStyle)} ${computeStyles(buttonStyles[props.variant])}` : defaultStyle} ${animationSpeeds[animationSpeed]} flex items-center gap-3 text-md`}>
-            {props.loader && props.loader}
-            {props.icon && props.icon}
-            {
-                !props.icon &&
-                (
-                    <>
-                        {props.startIcon && props.startIcon}
-                        {props.label && props.label}
-                        {props.endIcon && props.endIcon}
-                    </>
-                )
-            }
-        </button>
+        props.variant === "icon" ?
+            (
+                <>
+                    {props.icon && <props.icon className={`${props.iconClassName} ${baseButtonStyle.cursor}`} variant={iconVariant} />}
+                </>
+            )
+            :
+            (
+                <button className={`${buttonStyles[props.variant] ? `${computeStyles(baseButtonStyle)} ${computeStyles(buttonStyles[props.variant])}` : defaultStyle} ${animationSpeeds[animationSpeed]} flex items-center gap-3 text-md`}>
+                    {props.loader && props.loader}
+                    {props.icon && <props.icon className={`${props.iconClassName} ${baseButtonStyle.cursor}`} />}
+                    {
+                        !props.icon &&
+                        (
+                            <>
+                                {props.startIcon && <props.startIcon className={`${props.iconClassName} ${baseButtonStyle.cursor}`} />}
+                                {props.label && props.label}
+                                {props.endIcon && <props.endIcon className={`${props.iconClassName} ${baseButtonStyle.cursor}`} />}
+                            </>
+                        )
+                    }
+                </button>
+            )
     );
 }

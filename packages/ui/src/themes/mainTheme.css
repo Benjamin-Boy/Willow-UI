@@ -1,0 +1,49 @@
+@theme {
+    /* COLOR */
+    /* Default */
+    --color-default-light: oklch(87.1% 0.006 286.286);
+    --color-default-dark: oklch(21% 0.006 285.885);
+
+    /* Primary */
+    --color-primary: oklch(71.5% 0.143 215.221);
+
+    --color-primary-100: #e3dafb;
+    --color-primary-300: #b8a0ff;
+    --color-primary-500: #7244FC;
+    --color-primary-700: #492d9c;
+    --color-primary-900: #341a82;
+
+    /* Secondary */
+    --color-secondary-100: #faf1ff;
+    --color-secondary-300: #efd5ff;
+    --color-secondary-500: #E1B4FC;
+    --color-secondary-700: #8a39ba;
+    --color-secondary-900: #551d77;
+
+    /* Tertiary */
+    --color-tertiary-100: #fff3e0;
+    --color-tertiary-300: #ffe5bd;
+    --color-tertiary-500: #FCD597;
+    --color-tertiary-700: #bc8b3e;
+    --color-tertiary-900: #694a19;
+
+    /* Error */
+    --color-error: #ED251A;
+
+    /* Warning */
+    --color-warning: #EDA31A;
+
+    /* FONT */
+
+    /* FONT WEIGHT */
+
+    /* TEXT */
+        
+    /* SPACING */
+        
+    /* RADIUS */
+            
+    /* SHADOW */
+            
+    /* ANIMATE */
+}

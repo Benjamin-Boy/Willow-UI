@@ -1,4 +1,4 @@
-import { Button, TestIcon } from "@willow/ui";
+import { Button, TrashStroke } from "@willow/ui";
 
 export const buttonWithIconsSource = `<Button variant="contained" label="Contained" icon={<TestIcon />} />
 <Button variant="outlined" label="Outlined" startIcon={<TestIcon />} />
@@ -7,8 +7,8 @@ export const buttonWithIconsSource = `<Button variant="contained" label="Contain
 
 export default function ButtonWithIcons() {
     return <div className="flex gap-5 items-center">
-        <Button variant="contained" label="Contained" icon={<TestIcon />} />
-        <Button variant="outlined" label="Outlined" startIcon={<TestIcon />} />
-        <Button variant="text" label="Text" endIcon={<TestIcon />} />
+        <Button variant="contained" label="Contained" icon={TrashStroke} />
+        <Button variant="outlined" label="Outlined" startIcon={TrashStroke} />
+        <Button variant="text" label="Text" endIcon={TrashStroke} />
     </div>
 }

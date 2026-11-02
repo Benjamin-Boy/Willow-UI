@@ -1,1 +1,1 @@
-export { default as TestIcon } from "./TestIcon";
+export { default as TrashStroke } from "./TrashStroke";

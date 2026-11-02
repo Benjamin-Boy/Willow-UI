@@ -11,7 +11,7 @@ export default function LoadingButton() {
         <div className="flex gap-5 items-center">
             <Button variant="outlined" loader={<Spinner />} />
             <Button variant="contained" label="Contained" loader={<Spinner />} />
-            <Button variant="outlined" label="Outlined" loader={<Spinner />} />
+            <Button variant="outlined" label="Outlined" loader={<Spinner size={16} border={4} />} />
             <Button variant="text" label="Text" loader={<Spinner />} />
         </div>
     )

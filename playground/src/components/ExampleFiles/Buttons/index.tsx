@@ -2,7 +2,7 @@ import { ButtonProps } from "./data/ButtonProps";
 
 import BasicButton, { basicButtonSource } from "./BasicButton";
 import ButtonWithIcons, { buttonWithIconsSource } from "./ButtonWithIcons";
-import IconButton, { iconButtonSource } from "./IconButton";
+import IconButton, { iconButtonSource } from "./ButtonIcon";
 import ButtonsInGroup, { buttonsInGroupSource } from "./ButtonsInGroup";
 import LoadingButton, { loadingButtonSource } from "./LoadingButton";
 
