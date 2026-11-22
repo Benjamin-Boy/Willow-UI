@@ -1,5 +1,5 @@
 // Libraries
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 
 // Types
 import type { NavMenuEntry } from "../AppLayout";
@@ -10,6 +10,8 @@ interface Props {
 }
 
 export default function Sidebar(props: Props) {
+    const location = useLocation();
+
     const side = props.side ?? "left";
     const type = props.type ?? "route";
 
@@ -18,29 +20,38 @@ export default function Sidebar(props: Props) {
             <nav>
                 <ul>
                     {
-                        props.menu?.map((menu: any) => {
+                        props.menu?.map((entry: any) => {
+                            const isActive = location.pathname.split("/").includes(entry.route);
+                            const anchorIsActive = location.hash.split("#").includes(entry.route);
+
                             return (
-                                <li key={menu.id} className="p-1">
+                                <>
                                     {type === "route"
 
                                         ?
 
-                                        <NavLink to={{
-                                            pathname: menu.route,
-                                        }} className="cursor-pointer text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 px-2 py-1 rounded-md transition-all duration-200" >
-                                            {menu.label}
-                                        </NavLink>
+                                        <li key={entry.id} className={`cursor-pointer px-6 py-1 ${isActive ? "bg-zinc-900" : "hover:bg-zinc-900"} transition-all duration-200 group`}>
+                                            <NavLink to={{
+                                                pathname: entry.route,
+                                            }} className={`text-zinc-400 ${isActive ? "text-zinc-100 " : "group-hover:text-zinc-100"}`} >
+                                                {entry.label}
+                                            </NavLink>
+                                        </li>
 
                                         :
+                                        <li key={entry.id} className="cursor-pointer">
+                                            <div className="flex items-center group">
+                                                <div className={`border-l h-8 ${anchorIsActive ? "border-primary" : "border-transparent  group-hover:border-primary"}`}></div>
+                                                <a
+                                                    className={`text-zinc-400 hover:text-zinc-100 hover:bg-linear-to-r from-zinc-900 via-transparent to-transparent px-8 py-1 transition-all duration-200 ${anchorIsActive ? "text-zinc-100 bg-linear-to-r from-zinc-900 via-transparent to-transparent" : ""}`}
+                                                    href={`#${entry.route}`}>
+                                                    {entry.label}
+                                                </a>
+                                            </div>
+                                        </li>
 
-                                        <div className="flex items-center group">
-                                            <div className="border-transparent border-l group-hover:border-primary h-8"></div>
-                                            <a className={`cursor-pointer text-zinc-400 hover:text-zinc-100 hover:bg-linear-to-r from-transparent via-zinc-900 to-transparent px-8 py-1 rounded transition-all duration-200`} href={`#${menu.route}`}>
-                                                {menu.label}
-                                            </a>
-                                        </div>
                                     }
-                                </li>
+                                </>
                             )
                         })
                     }

@@ -21,5 +21,3 @@ export const creatableDropdownExample = {
     component: <CretableDropdown />,
     source: creatableDropdownSource,
 };
-
-

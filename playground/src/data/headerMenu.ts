@@ -1,26 +1,26 @@
 export const headerMenu = [
+    // {
+    //     id: 0,
+    //     label: "Home",
+    //     route: "/",
+    //     function: () => console.log("HOME"),
+    // },
     {
         id: 1,
-        label: "Home",
-        route: "/",
-        function: () => console.log("HOME"),
-    },
-    {
-        id: 2,
         label: "Components",
-        route: "/components",
+        route: "components",
         function: () => console.log("COMPONENTS"),
     },
     {
-        id: 3,
+        id: 2,
         label: "Themes",
-        route: "/themes",
+        route: "themes",
         function: () => console.log("THEMES"),
     },
     {
-        id: 4,
+        id: 3,
         label: "Docs",
-        route: "/docs",
+        route: "docs",
         function: () => console.log("DOCUMENTATION"),
     },
 ]

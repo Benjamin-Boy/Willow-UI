@@ -1,4 +1,6 @@
+import { ComponentType } from "react";
 import { computeStyles } from "../../utils/style.utils";
+import { IconProps } from "../Icons/Icon/IconWrapper";
 
 interface ButtonProps {
     variant: string;
@@ -6,10 +8,10 @@ interface ButtonProps {
     color?: string;
     disabled?: boolean;
     animationSpeed?: string;
-    icon?: React.ReactNode;
+    icon?: ComponentType<IconProps>;
     iconVariant?: string;
-    startIcon?: React.ReactNode;
-    endIcon?: React.ReactNode;
+    startIcon?: ComponentType<IconProps>;
+    endIcon?: ComponentType<IconProps>;
     rounded?: string;
     buttonStyle?: Record<string, Record<string, string>>;
     loader?: React.ReactNode;

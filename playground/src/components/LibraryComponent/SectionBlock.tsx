@@ -11,9 +11,11 @@ interface Props {
 export default function SectionBlock(props: Props) {
     return (
         <div className="flex flex-col gap-3" id={props.route} >
-            <div className="font-bold text-xl">{props.title}</div>
-            <div className="text-sm">{props.description}</div>
-            <article>{props.component}</article>
+            <div className="flex flex-col gap-1 p-2">
+                <div className="font-bold text-xl">{props.title}</div>
+                <div className="text-sm">{props.description}</div>
+            </div>
+            <article className="rounded-lg border border-zinc-800">{props.component}</article>
         </div>
     )
 }

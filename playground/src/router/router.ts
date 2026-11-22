@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        loader: () => redirect("/components/button"),
+                        loader: () => redirect("/components/button#basic-button"),
                     },
                     ...componentsMenu.map((menu) => {
                         return { path: menu.route, Component: menu.component }

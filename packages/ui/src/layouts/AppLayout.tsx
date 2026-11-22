@@ -15,12 +15,13 @@ interface Props {
     leftSidebarMenu?: NavMenuEntry[];
     rightSidebarMenu?: NavMenuEntry[];
     headerMenu?: NavMenuEntry[];
+    homeButton?: JSX.Element;
 }
 
 export default function AppLayout(props: Props) {
     return (
         <div className="flex flex-col bg-zinc-950 w-full min-h-screen">
-            <Header menu={props.headerMenu} />
+            <Header menu={props.headerMenu} homeButton={props.homeButton} />
             <div className="flex gap-3 grow">
                 {props.leftSidebarMenu && <Sidebar side="left" menu={props.leftSidebarMenu} />}
                 {props.children}
