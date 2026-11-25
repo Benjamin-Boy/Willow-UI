@@ -1,51 +1,86 @@
 // Libraries
-import { Dropdown, type Option } from "@willow/ui";
-import { useState } from "react";
-import { type MultiValue, type SingleValue } from "react-select";
+import { Dropdown, TrashStroke } from "@willow/ui";
 
-export const basicDropdownSource = `<Dropdown label="Choose a car" position="left" options={optionsTemp} value={singleValue} 
-onChange={handleChangeSingleDropdown} />
-
-<Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleValue} 
-onChange={handleChangeMultipleDropdown} isClearable />
+export const basicDropdownSource = `<Dropdown placeholder={"Placeholder"} options={optionsTemp} value={singleValue} 
+onChange={handleChangeDropdown} />
 `
 
 const optionsTemp = [
     {
-        label: "Volvo",
-        value: "volvo",
+        label: "My Account",
+        options: [
+            {
+                label: "Profile",
+                iconLeft: TrashStroke,
+                action: () => console.log("PROFILE"),
+            },
+            {
+                label: "Billing",
+                action: () => console.log("BILLING"),
+            },
+            {
+                label: "Settings",
+                action: () => console.log("SETTINGS"),
+            },
+        ]
     },
     {
-        label: "Audi",
-        value: "audi",
+        options: [
+            {
+                label: "Team",
+                iconRight: TrashStroke,
+                action: () => console.log("TEAM"),
+            },
+            {
+                label: "Invite users",
+                options: [
+                    {
+                        label: "Email",
+                        action: () => console.log("EMAIL"),
+                    },
+                    {
+                        label: "Message",
+                        action: () => console.log("MESSAGE"),
+                    },
+                ]
+            },
+            {
+                label: "New Team",
+                action: () => console.log("NEW TEAM"),
+            },
+        ]
     },
     {
-        label: "Mercedes",
-        value: "mercedes",
+        options: [
+            {
+                label: "Github",
+                action: () => console.log("GITHUB"),
+            },
+            {
+                label: "Support",
+                action: () => console.log("SUPPORT"),
+            },
+            {
+                label: "API",
+                disabled: true,
+                action: () => console.log("API"),
+            },
+        ]
     },
     {
-        label: "Renault",
-        value: "renault",
+        options: [
+            {
+                label: "Log out",
+                action: () => console.log("LOG OUT"),
+            },
+        ]
     },
 ]
 
 export default function BasicDropdown() {
-    const [singleValue, setSingleValue] = useState<SingleValue<Option>>(null);
-    const [multipleValue, setMultipleValue] = useState<MultiValue<Option>>([]);
-
-    const handleChangeSingleDropdown = (value: MultiValue<Option> | SingleValue<Option>) => {
-        setSingleValue(value as SingleValue<Option>);
-    }
-
-    const handleChangeMultipleDropdown = (value: MultiValue<Option> | SingleValue<Option>) => {
-        setMultipleValue(value as MultiValue<Option>);
-    }
-
     return (
         <div className="flex gap-5 items-center">
-            <Dropdown label="Choose a car" position="left" options={optionsTemp} value={singleValue} onChange={handleChangeSingleDropdown} />
-
-            <Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleValue} onChange={handleChangeMultipleDropdown} isClearable />
+            <Dropdown label={"Dropdown"} icon={TrashStroke} options={optionsTemp} />
         </div>
     )
 }

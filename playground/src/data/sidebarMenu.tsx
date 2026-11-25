@@ -6,9 +6,9 @@ import CodeBlock from "../components/LibraryComponent/CodeBlock";
 import { basicButtonExample, buttonGroupExample, buttonWithIconExample, iconButtonExample, loadingButtonExample } from "../components/ExampleFiles/Buttons"
 import ButtonComponentPage from "../pages/Components/ButtonComponentPage";
 
-// DROPDOWN
-import { basicDropdownExample, creatableDropdownExample, multipleDropdownExample } from "../components/ExampleFiles/Dropdowns";
-import DropdownComponentPage from "../pages/Components/DropdownComponentPage";
+// SELECT
+import { basicSelectExample, creatableSelectExample, multipleSelectExample, groupSelectExample } from "../components/ExampleFiles/Selects";
+import SelectComponentPage from "../pages/Components/SelectComponentPage";
 
 // RADIO
 import { basicRadioExample, radioSizeExample } from "../components/ExampleFiles/Radio";
@@ -29,6 +29,8 @@ import ToggleComponentPage from "../pages/Components/ToggleComponentPage";
 // TEXTFIELD
 import TextFieldComponentPage from "../pages/Components/TextFieldComponentPage";
 import { basicTextFieldExample } from "../components/ExampleFiles/TextFields";
+import DropdownComponentPage from "../pages/Components/DropdownComponentPage";
+import { basicDropdownExample } from "../components/ExampleFiles/Dropdowns";
 
 //TODO Mettre chaque element du tableau dans le ichier corresondant:
 //  - basic-button --> BasicButton
@@ -108,45 +110,57 @@ export const componentsMenu = [
     },
     {
         id: 2,
-        label: "Dropdown Menu",
-        route: "dropdown",
-        description: "A set of dropdown for various usages.",
-        component: DropdownComponentPage,
-        props: basicDropdownExample.props,
+        label: "Select",
+        route: "select",
+        description: "A set of select menus for various usages.",
+        component: SelectComponentPage,
+        props: basicSelectExample.props,
         sections: [
             {
                 id: 1,
-                label: "Basic dropdown",
-                route: "basic-dropdown",
-                description: "A simple dropdown menu with single entry.",
+                label: "Basic select",
+                route: "basic-select",
+                description: "A simple select menu with single entry.",
                 component: (
                     <div>
-                        <ExampleBlock content={basicDropdownExample.component} />
-                        <CodeBlock code={basicDropdownExample.source} />
+                        <ExampleBlock content={basicSelectExample.component} />
+                        <CodeBlock code={basicSelectExample.source} />
                     </div>
                 ),
             },
             {
                 id: 2,
-                label: "Multi dropdown",
-                route: "multi-dropdown",
-                description: "A simple dropdown menu allowing multiple entries.",
+                label: "Multi select",
+                route: "multi-select",
+                description: "A simple select menu allowing multiple entries.",
                 component: (
                     <div>
-                        <ExampleBlock content={multipleDropdownExample.component} />
-                        <CodeBlock code={multipleDropdownExample.source} />
+                        <ExampleBlock content={multipleSelectExample.component} />
+                        <CodeBlock code={multipleSelectExample.source} />
                     </div>
                 ),
             },
             {
                 id: 3,
-                label: "Creatable dropdown",
-                route: "creatable-dropdown",
-                description: "A dropdown menu allowing option entry creation on the fly.",
+                label: "Creatable select",
+                route: "creatable-select",
+                description: "A select menu allowing option entry creation on the fly.",
                 component: (
                     <div>
-                        <ExampleBlock content={creatableDropdownExample.component} />
-                        <CodeBlock code={creatableDropdownExample.source} />
+                        <ExampleBlock content={creatableSelectExample.component} />
+                        <CodeBlock code={creatableSelectExample.source} />
+                    </div>
+                ),
+            },
+            {
+                id: 4,
+                label: "Group select",
+                route: "group-select",
+                description: "A select menu displaying group options.",
+                component: (
+                    <div>
+                        <ExampleBlock content={groupSelectExample.component} />
+                        <CodeBlock code={groupSelectExample.source} />
                     </div>
                 ),
             },
@@ -308,6 +322,64 @@ export const componentsMenu = [
                     </div>
                 ),
             },
+        ],
+    },
+    {
+        id: 8,
+        label: "Dropdown",
+        route: "dropdown",
+        description: "A set of dropdown menus for various usages.",
+        component: DropdownComponentPage,
+        props: basicDropdownExample.props,
+        sections: [
+            {
+                id: 1,
+                label: "Basic dropdown",
+                route: "basic-dropdown",
+                description: "A simple dropdown menu with single entry.",
+                component: (
+                    <div>
+                        <ExampleBlock content={basicDropdownExample.component} />
+                        <CodeBlock code={basicDropdownExample.source} />
+                    </div>
+                ),
+            },
+            // {
+            //     id: 2,
+            //     label: "Multi select",
+            //     route: "multi-select",
+            //     description: "A simple select menu allowing multiple entries.",
+            //     component: (
+            //         <div>
+            //             <ExampleBlock content={multipleSelectExample.component} />
+            //             <CodeBlock code={multipleSelectExample.source} />
+            //         </div>
+            //     ),
+            // },
+            // {
+            //     id: 3,
+            //     label: "Creatable select",
+            //     route: "creatable-select",
+            //     description: "A select menu allowing option entry creation on the fly.",
+            //     component: (
+            //         <div>
+            //             <ExampleBlock content={creatableSelectExample.component} />
+            //             <CodeBlock code={creatableSelectExample.source} />
+            //         </div>
+            //     ),
+            // },
+            // {
+            //     id: 4,
+            //     label: "Group select",
+            //     route: "group-select",
+            //     description: "A select menu displaying group options.",
+            //     component: (
+            //         <div>
+            //             <ExampleBlock content={groupSelectExample.component} />
+            //             <CodeBlock code={groupSelectExample.source} />
+            //         </div>
+            //     ),
+            // },
         ],
     },
 ]

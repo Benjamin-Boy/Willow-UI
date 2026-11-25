@@ -1,12 +1,12 @@
 // Libraries
-import { Dropdown, type Option } from "@willow/ui";
+import { SelectInput, type Option } from "@willow/ui";
 import { useState } from "react";
 import { type MultiValue, type SingleValue } from "react-select";
 
-export const multipleDropdownSource = `<Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleValue} 
+export const multipleSelectSource = `<SelectInput label="Choose a car" position="left" options={optionsTemp} value={multipleValue} 
 onChange={handleChangeMultipleDropdown} isMulti />
 
-<Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleClearableValue} 
+<SelectInput label="Choose a car" position="left" options={optionsTemp} value={multipleClearableValue} 
 onChange={handleChangeMultipleClearableDropdown} isMulti isClearable />
 `
 
@@ -29,23 +29,23 @@ const optionsTemp = [
     },
 ]
 
-export default function MultipleDropdown() {
+export default function MultipleSelect() {
     const [multipleValue, setMultipleValue] = useState<MultiValue<Option>>([]);
     const [multipleClearableValue, setMultipleClearableValue] = useState<MultiValue<Option>>([]);
 
-    const handleChangeMultipleDropdown = (value: MultiValue<Option> | SingleValue<Option>) => {
+    const handleChangeMultipleSelect = (value: MultiValue<Option> | SingleValue<Option>) => {
         setMultipleValue(value as MultiValue<Option>);
     }
 
-    const handleChangeMultipleClearableDropdown = (value: MultiValue<Option> | SingleValue<Option>) => {
+    const handleChangeMultipleClearableSelect = (value: MultiValue<Option> | SingleValue<Option>) => {
         setMultipleClearableValue(value as MultiValue<Option>);
     }
 
     return (
         <div className="flex gap-5 items-center">
-            <Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleValue} onChange={handleChangeMultipleDropdown} isMulti />
+            <SelectInput label="Choose a car" position="left" options={optionsTemp} value={multipleValue} onChange={handleChangeMultipleSelect} isMulti />
 
-            <Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleClearableValue} onChange={handleChangeMultipleClearableDropdown} isMulti isClearable />
+            <SelectInput label="Choose a car" position="left" options={optionsTemp} value={multipleClearableValue} onChange={handleChangeMultipleClearableSelect} isMulti isClearable />
         </div>
     )
 }

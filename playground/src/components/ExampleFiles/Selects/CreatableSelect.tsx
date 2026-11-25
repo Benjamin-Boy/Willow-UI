@@ -1,9 +1,9 @@
 // Libraries
-import { Dropdown, type Option } from "@willow/ui";
+import { SelectInput, type Option } from "@willow/ui";
 import { useState } from "react";
 import { type MultiValue, type SingleValue } from "react-select";
 
-export const creatableDropdownSource = `<Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleValue} 
+export const creatableSelectSource = `<SelectInput label="Choose a car" position="left" options={optionsTemp} value={multipleValue} 
 onChange={handleChangeMultipleDropdown} isCreatable isClearable />
 `
 
@@ -26,16 +26,16 @@ const optionsTemp = [
     },
 ]
 
-export default function CretableDropdown() {
+export default function CreatableSelect() {
     const [multipleValue, setMultipleValue] = useState<MultiValue<Option>>([]);
 
-    const handleChangeMultipleDropdown = (value: MultiValue<Option> | SingleValue<Option>) => {
+    const handleChangeMultipleSelect = (value: MultiValue<Option> | SingleValue<Option>) => {
         setMultipleValue(value as MultiValue<Option>);
     }
 
     return (
         <div className="flex gap-5 items-center">
-            <Dropdown label="Choose a car" position="left" options={optionsTemp} value={multipleValue} onChange={handleChangeMultipleDropdown} isCreatable isClearable isMulti />
+            <SelectInput label="Choose a car" position="left" options={optionsTemp} value={multipleValue} onChange={handleChangeMultipleSelect} isCreatable isClearable isMulti />
         </div>
     )
 }

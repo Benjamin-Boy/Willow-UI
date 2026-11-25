@@ -1,14 +1,15 @@
 // Libraries
-import Select, { type MultiValue, type SingleValue } from "react-select";
-import Creatable, { useCreatable } from 'react-select/creatable';
+import Select, { components, CSSObjectWithLabel, GroupHeadingProps, GroupProps, type MultiValue, type SingleValue } from "react-select";
+import Creatable from 'react-select/creatable';
 
 // Types
 interface Props {
-    options: Option[];
+    options: Option[] | GroupedOption[];
     onChange: (value: MultiValue<Option> | SingleValue<Option>) => void,
     value: Option | Option[] | null;
     label?: string;
     position?: string;
+    disabled?: boolean;
     isMulti?: boolean;
     isClearable?: boolean;
     isCreatable?: boolean;
@@ -19,14 +20,34 @@ export interface Option {
     value: string | number;
 }
 
-export default function Dropdown(props: Props) {
+export interface GroupedOption {
+    readonly label: string;
+    readonly options: readonly Option[];
+}
+
+//TODO
+//  - Ajouter une multi sélection par checkbox
+//  - Disabled
+
+const GroupHeading = (
+    props: GroupHeadingProps<Option | GroupedOption>
+) => {
+    return (
+        <div className="not-last:border-b not-last:border-input-border text-input-border text-sm p-2">
+            <components.GroupHeading {...props} />
+        </div>
+    );
+}
+
+export default function SelectInput(props: Props) {
     const position = props.position ?? "left";
+    const disabled = props.disabled ?? false;
     const isMulti = props.isMulti ?? false;
     const isClearable = props.isClearable ?? false;
     const isCreatable = props.isCreatable ?? false;
 
     const styles = {
-        clearIndicator: (baseStyles, state) => ({
+        clearIndicator: (baseStyles: CSSObjectWithLabel, state) => ({
             ...baseStyles,
             padding: "0.2rem",
             cursor: "pointer",
@@ -34,19 +55,19 @@ export default function Dropdown(props: Props) {
             display: "flex",
             alignItems: "center",
         }),
-        container: (baseStyles, state) => ({
+        container: (baseStyles: CSSObjectWithLabel, state) => ({
             ...baseStyles,
             borderWidth: "0.1rem",
-            borderColor: "var(--color-input-text)",
+            borderColor: "var(--color-input-border)",
             borderRadius: "var(--radius-md)",
         }),
-        control: (baseStyles) => ({
+        control: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             backgroundColor: "var(--color-input-bg)",
             padding: "0.2rem 0.8rem 0.2rem 0.8rem",
             borderRadius: "var(--radius-md)",
         }),
-        dropdownIndicator: (baseStyles) => ({
+        dropdownIndicator: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             padding: "0.2rem",
             cursor: "pointer",
@@ -54,70 +75,70 @@ export default function Dropdown(props: Props) {
             display: "flex",
             alignItems: "center",
         }),
-        group: (baseStyles) => ({
+        group: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        groupHeading: (baseStyles) => ({
+        groupHeading: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        menuPortal: (baseStyles) => ({
+        menuPortal: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        indicatorsContainer: (baseStyles) => ({
+        indicatorsContainer: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        indicatorSeparator: (baseStyles) => ({
+        indicatorSeparator: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        input: (baseStyles) => ({
+        input: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        loadingIndicator: (baseStyles) => ({
+        loadingIndicator: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        loadingMessage: (baseStyles) => ({
+        loadingMessage: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        menu: (baseStyles) => ({
+        menu: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        menuList: (baseStyles) => ({
+        menuList: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             backgroundColor: "var(--color-input-bg)",
             color: "var(--color-input-text)",
             borderWidth: "0.1rem",
-            borderColor: "var(--color-input-text)",
+            borderColor: "var(--color-input-border)",
             borderRadius: "var(--radius-md)",
             display: "flex",
             flexDirection: "column",
             gap: "0.3rem",
             marginTop: "0.5rem",
         }),
-        multiValue: (baseStyles) => ({
+        multiValue: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        multiValueLabel: (baseStyles) => ({
+        multiValueLabel: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             padding: "0.1rem 0.4rem 0.1rem 0.4rem",
             borderWidth: "0.1rem",
-            borderColor: "var(--input-text)",
+            borderColor: "var(--color-input-border)",
             borderRadius: "var(--radius-sm) 0 0 var(--radius-sm)",
         }),
-        multiValueRemove: (baseStyles) => ({
+        multiValueRemove: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             padding: "0.1rem 0.4rem 0.1rem 0.4rem",
             borderWidth: "0.1rem 0.1rem 0.1rem 0",
-            borderColor: "var(--input-text)",
+            borderColor: "var(--color-input-border)",
             borderRadius: "0 var(--radius-sm) var(--radius-sm) 0",
             cursor: "pointer",
             "&:hover": {
                 backgroundColor: "var(--color-primary)",
             },
         }),
-        noOptionsMessage: (baseStyles) => ({
+        noOptionsMessage: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        option: (baseStyles) => ({
+        option: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             padding: "0.3rem 1rem 0.3rem 1rem",
             cursor: "pointer",
@@ -125,13 +146,13 @@ export default function Dropdown(props: Props) {
                 backgroundColor: "var(--color-primary)",
             }
         }),
-        placeholder: (baseStyles) => ({
+        placeholder: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        singleValue: (baseStyles) => ({
+        singleValue: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
         }),
-        valueContainer: (baseStyles) => ({
+        valueContainer: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             padding: "0.3rem",
             display: "flex",
@@ -154,6 +175,8 @@ export default function Dropdown(props: Props) {
                     isClearable={isClearable}
                     noOptionsMessage={() => "Aucune option"}
                     closeMenuOnSelect={!isMulti}
+                    components={{ GroupHeading }}
+                    isDisabled={disabled}
 
                     unstyled
                     styles={styles}
